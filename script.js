@@ -1,5 +1,5 @@
 let state = {
-  playerName: "YAssine Echouiakh",
+  playerName: "Yassine Echouiakh",
   tasks: [], // Initialisation de tasks vide
 };
 
