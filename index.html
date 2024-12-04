@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen" />
+
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+    <title>task manager</title>
+    <link rel="canonical" href="https://codepen.io/sumit011/pen/WNVXReO" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      window.console = window.console || function (t) {};
+    </script>
+  </head>
+  <body translate="no">
+    <div class="bg-zinc-950 text-white min-h-screen">
+      <div class="container mx-auto px-4 py-8 max-w-5xl">
+        <!-- Profile Section -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="md:col-span-1">
+            <div
+              class="bg-zinc-800/45 rounded-xl p-6 shadow-lg border border-purple-500/20"
+            >
+              <div class="flex flex-col items-center">
+                <div
+                  class="w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mb-4"
+                >
+                  <img
+                    src="https://avatarfiles.alphacoders.com/347/347356.jpg"
+                    class="rounded-full bg-cover border-2 border-purple-400"
+                  />
+                </div>
+                <h2 class="text-2xl font-bold mb-2">
+                  Welcome,
+                  <span id="playerName" class="text-purple-400"
+                    >Adventurer</span
+                  >
+                  <button
+                    onclick="editName()"
+                    class="ml-2 text-sm text-gray-400 hover:text-purple-400"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                </h2>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tasks Section -->
+          <div class="md:col-span-2">
+            <div
+              class="bg-[#111] rounded-xl p-4 lg:p-6 shadow-lg border border-purple-500/20"
+            >
+              <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Active Quests</h2>
+                <button
+                  onclick="openModal('newTaskModal')"
+                  class="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg flex items-center transition-all duration-300 transform hover:scale-105"
+                >
+                  <i class="fas fa-plus mr-2"></i> New Quest
+                </button>
+              </div>
+
+              <!-- Tasks Pending Section -->
+              <div
+                class="mt-6 bg-zinc-800 rounded-lg p-4 w-full transition-all duration-300 hover:bg-gray-600"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="text-lg">Tasks Counter</span>
+                  <span
+                    id="taskCount"
+                    class="text-2xl font-bold text-yellow-500"
+                    >5</span
+                  >
+                  <!-- Task count dynamically updated -->
+                </div>
+              </div>
+
+              <div
+                id="taskList"
+                class="space-y-4 h-[480px] max-h-full overflow-y-auto pr-2"
+              >
+                <!-- Tasks will be dynamically inserted here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Modal -->
+      <div id="newTaskModal" class="modal">
+        <div class="modal-content bg-zinc-800">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-xl font-bold">New Quest</h3>
+            <button
+              onclick="closeModal('newTaskModal')"
+              class="text-gray-400 hover:text-white transition-colors"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <form id="newTaskForm" onsubmit="addNewTask(event)">
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Quest Title</label>
+              <input
+                type="text"
+                id="taskTitle"
+                required
+                class="w-full bg-zinc-700 rounded-lg p-2 text-white border border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
+              />
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium mb-2">Description</label>
+              <textarea
+                id="taskDescription"
+                rows="3"
+                class="w-full bg-zinc-700 rounded-lg p-2 text-white border border-gray-600 focus:border-purple-500 focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300"
+              ></textarea>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+              <button
+                type="button"
+                onclick="closeModal('newTaskModal')"
+                class="px-4 py-2 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105"
+              >
+                Create Quest
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script id="rendered-js" src="script.js"></script>
+  </body>
+</html>
